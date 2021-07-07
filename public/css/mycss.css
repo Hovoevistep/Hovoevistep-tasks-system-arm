@@ -1,0 +1,22 @@
+#list_div
+{
+    background-color: #fff;
+    border-radius:10px; margin:5px;
+    max-width: 24%;
+}
+#card_desc, #card_name_desc, #board_desc, #list_desc
+{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* #list_card
+{
+    display: inline-grid;
+} */
+
+#btn_href
+{
+    width: 10em;
+}

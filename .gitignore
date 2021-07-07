@@ -1,7 +1,3 @@
-.DS_Store
-workspace.xml
-Thumbs.db
-/bootstrap/compiled.php
 /node_modules
 /public/hot
 /public/storage
@@ -17,5 +13,3 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
-composer.phar
-composer.lock

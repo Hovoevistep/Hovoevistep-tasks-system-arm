@@ -21,11 +21,15 @@ class HomeController extends Controller
 
     public function index()
     {
-        
         $trello_cred = TrelloCredential::all();
 
         return view('home', compact('trello_cred'));
+    }
 
+    public function home(Request $request)
+    {
+        dd($request->all());
+        return view('auth.login');
     }
 
 }

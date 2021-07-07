@@ -6,10 +6,10 @@
         <div class="col-md-10">
 
                 <div class="card-img-overlay">
-                    <h3 class="card-name">{{ $card->name }}</h3>
-                    <p class="card-desc">{{ $card->desc }}</p>
+                    <h3 class="card-name">{{ $card->integratedCardsFromCards->name }}</h3>
+                    <p class="card-desc">{{ $card->integratedCardsFromCards->desc }}</p>
                 </div>
-                
+
         </div>
     </div>
 </div>

@@ -323,31 +323,39 @@ class TestController extends Controller
 
 
 
-        if($board === null ||empty($list->integratedCardsFromLists)){
+        if($board === null || empty($list->integratedCardsFromLists)){
             return redirect()->to('/errorPage');
         }
 
         $cards = $list->integratedCardsFromLists;
+
 
         return view('cards', compact('board', 'cards'));
     }
 
     public function viewCardPage($id,$listId,$cardId)
     {
+
         $board = IntegratedBoards::where('boards.id', $id)
         ->join('boards', 'boards.id', '=', 'integrated_boards.board_id')
         ->first();
-            
-        $card = IntegratedCards::where('list_id', $listId)
-        ->where('card_id', $cardId)
-        ->join('lists', 'lists.id', '=', 'integrated_cards.list_id')
-        ->join('cards', 'cards.id', '=' , 'integrated_cards.card_id')
+
+        $list = IntegratedLists::where('board_id', $id)
+        ->where('list_id', $listId)
+        ->join('boards', 'boards.id', '=', 'integrated_lists.board_id')
+        ->join('lists', 'lists.id', '=', 'integrated_lists.list_id')
         ->first();
 
-        if($board === null || $card === null){
+
+        $cardErr = IntegratedCards::where('card_id', $cardId)
+        ->first();
+
+        if($board === null || empty($list->integratedCardsFromLists) || $cardErr === null)
+        {
             return redirect()->to('/errorPage');
         }
 
+        $card = $list->integratedCardsFromLists->where('id', $cardId)->first();
 
         return view('viewCard', compact('card', 'board'));
     }

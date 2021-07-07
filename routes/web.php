@@ -25,12 +25,12 @@ Auth::routes();
 
 Route::middleware('auth')->group(function() {
 
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::post('/settings', [TestController::class, 'settings']);
-    Route::get('/import', [TestController::class, 'import']);
-    Route::post('/importing', [TestController::class, 'importing']);
-    Route::get('/dashboard', [TestController::class, 'dashboard']);
-    Route::get('/boards', [TestController::class, 'boards']);
+    Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::post('settings', [TestController::class, 'settings']);
+    Route::get('import', [TestController::class, 'import']);
+    Route::post('importing', [TestController::class, 'importing']);
+    Route::get('dashboard', [TestController::class, 'dashboard']);
+    Route::get('boards', [TestController::class, 'boards']);
     Route::get('boards/view/{id}', [TestController::class, 'view']);
     Route::get('view/{id}', [TestController::class, 'viewList']);
     Route::get('view/{id}/{listId}', [TestController::class, 'viewCards']);

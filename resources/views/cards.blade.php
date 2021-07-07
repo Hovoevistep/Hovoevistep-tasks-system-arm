@@ -4,14 +4,19 @@
 <div class="container">
         <div class="col-md-12">
             <div class="col-sm row">
-
+                @empty($cards[0])
+                    <div class="grid">
+                        <h1>There are no cards in this list :(</h1>
+                        <a  href="{{ url('view/' . $board->id) }}">Go back</a>
+                    </div>
+                @endisset
                 @foreach ($cards as $card)
                     <div id="list_div" class="col-md-3 col-xl-3">
                         <div class="card-body">
-                            <h5 id="card_name_desc" class="card-name">{{ $card->name }}</h5>
+                            <h5 id="card_name_desc" class="card-name">{{ $card->integratedCardsFromCards->name }}</h5>
                             <p id="card_desc" class="card-text">
-                                {{ $card->desc }} @if($card->desc === '' || $card->desc === null) empty desc @endif</p>
-                            <a type="button" href="{{ url('view/' . $board->id . '/' . $card->list_id . '/' . $card->id) }}" class="btn btn-outline-primary p-1 w-75 mt-1">View </a>
+                                {{ $card->integratedCardsFromCards->desc }} @if($card->desc === '' || $card->desc === null) empty desc @endif</p>
+                            <a type="button" href="{{ url('view/' . $board->id . '/' . $card->list_id . '/' . $card->card_id) }}" class="btn btn-outline-primary p-1 w-75 mt-1">View </a>
                         </div>
                     </div>
                 @endforeach

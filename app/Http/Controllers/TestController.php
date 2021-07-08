@@ -88,13 +88,13 @@ class TestController extends Controller
             $user  = Auth::user();
 
             $boards = $response->body;
-
             foreach($boards as $key => $board)
             {
 
                 $backgroundBottomColor = $board->prefs->backgroundBottomColor;
                 $backgroundTopColor = $board->prefs->backgroundTopColor;
                 $backgroundImage = $board->prefs->backgroundImage;
+
 
                 if(empty(IntegratedBoards::where('trello_board_id', $board->id)->first()))
                 {
@@ -142,24 +142,19 @@ class TestController extends Controller
                     $query
                 );
 
-
-
-
                 foreach($responseList->body as $val => $list)
                 {
 
                     $board_id = IntegratedBoards::where('trello_board_id', $list->idBoard)->pluck('board_id')->first();
 
+
                     if(empty(IntegratedLists::where('trello_list_id', $list->id)->first()))
                     {
-
                         $createLists = Lists::create(
                             [
                                 'name'    => $list->name,
                             ]
                         );
-
-
                     }
 
                    else
@@ -268,6 +263,7 @@ class TestController extends Controller
 
        return response()->json(200);
     }
+
 
 
     public function boards()

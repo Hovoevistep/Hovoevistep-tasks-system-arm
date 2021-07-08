@@ -15,7 +15,7 @@ class CreateCardsTable extends Migration
     {
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->index();
+            $table->string('name', 500)->index();
             $table->string('short_url');
             $table->text('desc')->nullable();
             $table->string('idAttachment')->nullable();

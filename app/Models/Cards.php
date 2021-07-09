@@ -13,7 +13,8 @@ class Cards extends Model
         'name',
         'short_url',
         'desc',
-        'idAttachment'
+        'idAttachment',
+        'cardImg'
     ];
 
     public function integratedCard()

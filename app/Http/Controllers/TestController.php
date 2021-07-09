@@ -42,7 +42,7 @@ class TestController extends Controller
 
         if($response->code === 200){
 
-        $idMemberCreator = $response->body[0]->idMemberCreator;
+            $idMemberCreator = $response->body[0]->idMemberCreator;
 
             TrelloCredential::updateOrCreate(
                 [
@@ -204,6 +204,15 @@ class TestController extends Controller
 
                 foreach($responseCard->body as $card)
                 {
+                    if(property_exists($card->cover, 'sharedSourceUrl'))
+                    {
+                        $cardImg = $card->cover->sharedSourceUrl;
+                    }
+                    else
+                    {
+                        $cardImg = null;
+                    }
+
                     $list_id = IntegratedLists::where('trello_list_id', $card->idList)->pluck('list_id')->first();
 
                     if(empty(IntegratedCards::where('trello_card_id', $card->id)->first()))
@@ -213,7 +222,8 @@ class TestController extends Controller
                                 'name'         => $card->name,
                                 'short_url'    => $card->shortUrl,
                                 'desc'         => $card->desc,
-                                'idAttachment' => $card->cover->idAttachment
+                                'idAttachment' => $card->cover->idAttachment,
+                                'cardImg'      => $cardImg
                             ]
                         );
 
@@ -227,7 +237,8 @@ class TestController extends Controller
                                 'name'         => $card->name,
                                 'short_url'    => $card->shortUrl,
                                 'desc'         => $card->desc,
-                                'idAttachment' => $card->cover->idAttachment
+                                'idAttachment' => $card->cover->idAttachment,
+                                'cardImg'      => $cardImg
                             ]
                         );
 
@@ -253,12 +264,10 @@ class TestController extends Controller
                                 'card_id'        => $createCards->id,
                                 'trello_card_id' => $card->id
                             ]
-
                         );
                     }
                 }
             }
-
         }else{
             session()->flash('error', 'Empty your information');
             return redirect()->back();
@@ -308,7 +317,8 @@ class TestController extends Controller
         return view('lists', compact('board', 'lists'));
     }
 
-    public function viewCards($id, $listId){
+    public function viewCards($id, $listId)
+    {
 
         $board = IntegratedBoards::where('boards.id', $id)
                  ->join('boards', 'boards.id', '=', 'integrated_boards.board_id')
@@ -369,7 +379,6 @@ class TestController extends Controller
     {
         return view('dashboard');
     }
-
 
     public function errorPage()
     {

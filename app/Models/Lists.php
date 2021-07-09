@@ -16,8 +16,8 @@ class Lists extends Model
     {
         return $this->hasMany(IntegratedLists::class, 'list_id');
     }
-    public function integratedCard()
+    public function integratedCards()
     {
-        return $this->hasMany(integratedCard::class, 'list_id');
+        return $this->hasMany(integratedCards::class, 'list_id');
     }
 }

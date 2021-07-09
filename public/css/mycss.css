@@ -10,22 +10,32 @@
     border-radius:10px; margin:5px;
     max-width: 24%;
 }
-#card_desc, #card_name_desc, #board_desc, #list_desc
+#card_name_desc, #board_desc, #list_desc
 {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
-/* #list_card
-{
-    display: inline-grid;
-} */
-
+#card_desc{
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#card_div h4{
+    width: 250px;
+}
 #btn_href
 {
     width: 10em;
 }
+
+#card_btn_div{
+    height: 40px;
+     width: 202px;
+     margin: 0 auto;
+}
+
 @media screen and (max-width: 1000px) {
     #list_div, #card_div
     {
@@ -58,5 +68,4 @@
     {
         max-width: 100%;
     }
-
 }

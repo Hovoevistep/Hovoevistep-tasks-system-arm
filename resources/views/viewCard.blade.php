@@ -3,11 +3,21 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-8">
 
-                <div class="card-img-overlay">
-                    <h3 class="card-name">{{ $card->integratedCardsFromCards->name }}</h3>
-                    <p class="card-desc">{{ $card->integratedCardsFromCards->desc }}</p>
+                <div class="card" style="width: 600px">
+                    @if ($card->integratedCardsFromCards->cardImg)
+                        <img class="card-img-top" src="{{ $card->integratedCardsFromCards->cardImg }}" alt="Card image" style="width:100%">
+                    @endif
+                    <div class="card-body">
+                        <h4 class="card-title">{{ $card->integratedCardsFromCards->name }}</h4>
+
+                        @if ($card->integratedCardsFromCards->desc)
+                            <p class="card-text">{{ $card->integratedCardsFromCards->desc }}</p>
+                        @else
+                            <p class="card-text">Empty desc</p>
+                        @endif
+                  </div>
                 </div>
 
         </div>

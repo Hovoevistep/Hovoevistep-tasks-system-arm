@@ -19,6 +19,7 @@ class CreateCardsTable extends Migration
             $table->string('short_url');
             $table->text('desc')->nullable();
             $table->string('idAttachment')->nullable();
+            $table->string('cardImg')->nullable();
             $table->timestamps();
         });
     }

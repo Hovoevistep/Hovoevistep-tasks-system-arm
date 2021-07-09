@@ -37,29 +37,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/dashboard') }}">Dashboard </a>
-                        </li>
-                        @if(!empty(Illuminate\Support\Facades\Auth::user()->trelloCredentials()->first()))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/import') }}">Trello</a>
-                            </li>
-                        @endif
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/home') }}">Setting</a>
-                        </li>
-
-                        @if(!empty($authUser->integratedBoard))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/boards') }}">Boards</a>
-                        </li>
-                        @endif
-
-                    </ul>
-                </div>
 
 
                 {{-- @else
@@ -75,9 +53,27 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                    
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/dashboard') }}">Dashboard </a>
+                            </li>
+                            @if(!empty(Illuminate\Support\Facades\Auth::user()->trelloCredentials()->first()))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('/import') }}">Trello</a>
+                                </li>
+                            @endif
 
-                    </ul>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/home') }}">Setting</a>
+                            </li>
+
+                            @if(!empty($authUser->integratedBoard))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/boards') }}">Boards</a>
+                            </li>
+                            @endif
+                        </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">

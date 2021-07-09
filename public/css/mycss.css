@@ -4,6 +4,12 @@
     border-radius:10px; margin:5px;
     max-width: 24%;
 }
+#card_div
+{
+    background-color: #fff;
+    border-radius:10px; margin:5px;
+    max-width: 24%;
+}
 #card_desc, #card_name_desc, #board_desc, #list_desc
 {
     white-space: nowrap;
@@ -19,4 +25,38 @@
 #btn_href
 {
     width: 10em;
+}
+@media screen and (max-width: 1000px) {
+    #list_div, #card_div
+    {
+        max-width: 33%;
+    }
+
+}
+@media screen and (max-width: 770px) {
+    #list_div.button , #card_div.button
+    {
+       display: flex;
+    }
+    #list_div, #card_div
+    {
+        max-width: 40%;
+    }
+}
+@media screen and (max-width: 500px) {
+    #myRow, #cardRow
+    {
+        display: block !important;
+        margin: 0 initial;
+    }
+    #listsContainer, #cardsContainer
+    {
+        display: flex;
+        justify-content: center;
+    }
+    #list_div,  #card_div
+    {
+        max-width: 100%;
+    }
+
 }

@@ -39,7 +39,7 @@ class TestController extends Controller
             $query
         );
 
-        
+
         if($response->code === 200){
 
         $idMemberCreator = $response->body[0]->idMemberCreator;
@@ -87,7 +87,6 @@ class TestController extends Controller
                 $headers,
                 $query
             );
-            dd($response->body);
 
             $user  = Auth::user();
 

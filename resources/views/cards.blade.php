@@ -24,7 +24,7 @@
                         <div class="card-body d-flex row align-content-between h-100">
                     @endif
                          <div>
-                            <h4 id="card_name_desc" class="row align-items-center  card-name">{{ $card->integratedCardsFromCards->name }}</h4>
+                            <h4 id="card_name_desc">{{ $card->integratedCardsFromCards->name }}</h4>
                             <p id="card_desc" class="card-text">
                                 {{ $card->integratedCardsFromCards->desc }} @if($card->desc === '' || $card->desc === null) empty desc @endif</p>
                         </div>

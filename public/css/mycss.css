@@ -41,8 +41,15 @@
     {
         max-width: 33%;
     }
-
 }
+
+@media screen and (max-width: 990px) {
+    #board_div
+    {
+        justify-content: center;
+    }
+}
+
 @media screen and (max-width: 770px) {
     #list_div.button , #card_div.button
     {
@@ -52,7 +59,12 @@
     {
         max-width: 40%;
     }
+    /* #board_div {
+        justify-content: center;
+        display: flex;
+    } */
 }
+
 @media screen and (max-width: 500px) {
     #myRow, #cardRow
     {

@@ -16,8 +16,9 @@ class CreateTrelloCredentialsTable extends Migration
         Schema::create('trello_credentials', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->index();
-            $table->string('key');
-            $table->string('token');
+            $table->string('key')->index();
+            $table->string('token')->index();
+            $table->string('id_member_creator')->index();
             $table->timestamps();
         });
     }

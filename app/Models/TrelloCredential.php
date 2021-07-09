@@ -13,7 +13,8 @@ class TrelloCredential extends Model
     protected $fillable = [
         'user_id',
         'key',
-        'token'
+        'token',
+        'id_member_creator'
     ];
 
 

@@ -39,14 +39,17 @@ class TestController extends Controller
             $query
         );
 
-
+        
         if($response->code === 200){
+
+        $idMemberCreator = $response->body[0]->idMemberCreator;
 
             TrelloCredential::updateOrCreate(
                 [
-                    'user_id' => Auth::user()->id,
-                    'key'     => $key,
-                    'token'   => $token
+                    'user_id'           => Auth::user()->id,
+                    'key'               => $key,
+                    'token'             => $token,
+                    'id_member_creator' => $idMemberCreator
                 ]
             );
         }
@@ -84,6 +87,7 @@ class TestController extends Controller
                 $headers,
                 $query
             );
+            dd($response->body);
 
             $user  = Auth::user();
 

@@ -200,6 +200,8 @@ class TestController extends Controller
 
                    $integratedList = IntegratedLists::where('trello_list_id', $list->id);
 
+
+                   dd($list);
                    if($integratedList->count())
                    {
 
@@ -415,7 +417,9 @@ class TestController extends Controller
     {
         return view('error');
     }
-    public function webhook(\Illuminate\Http\Request $request){
+
+    public function webhook(\Illuminate\Http\Request $request)
+    {
         $data = file_get_contents("php://input");
         dd($request);
     }

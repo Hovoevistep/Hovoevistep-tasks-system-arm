@@ -419,6 +419,6 @@ class TestController extends Controller
     public function webhook(\Illuminate\Http\Request $request)
     {
         $data = file_get_contents("php://input");
-        dd($request);
+        dd($request->instance()->getContent());
     }
 }

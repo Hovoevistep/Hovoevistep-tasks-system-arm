@@ -86,7 +86,7 @@ class TestController extends Controller
             );
 
 
-            $callbackUrl = 'http://tasks-system.loc';
+            $callbackUrl = 'https://tasks-system-am.herokuapp.com/webhook';
             $query_web = array(
               'key' => $key,
               'token' => $token,

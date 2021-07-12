@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TestController;
-use App\Models\IntegratedCards;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,16 +37,12 @@ Route::middleware('auth')->group(function() {
 
 });
 
-Route::post('/webhook', function (\Illuminate\Http\Request $request)
-{
-    IntegratedCards::create([
-        'list_id' => $request->all()['model']['username'],
-        'card_id' => $request->all()['model']['id'],
-        'trello_card_id' => 'asdasdasdasdasdaasd'
-    ]);
-        var_export($request->all()['model']['username'], true);
-        return response()->json(['success' => true]);
-});
+// Route::post('/webhook', function (\Illuminate\Http\Request $request) {
+
+//        dd($request->input('model'));
+//     //    \Illuminate\Support\Facades\Log::debug(var_export($request->all()['model']['username'], true));
+//        return response()->json(['success' => true]);
+// });
 
 Route::any('{error}', [TestController::class, 'errorPage']);
 

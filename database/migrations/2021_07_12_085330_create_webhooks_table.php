@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTrelloCredentialsTable extends Migration
+class CreateWebhooksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateTrelloCredentialsTable extends Migration
      */
     public function up()
     {
-        Schema::create('trello_credentials', function (Blueprint $table) {
+        Schema::create('webhooks', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->index();
-            $table->string('key')->index();
-            $table->string('token')->index();
-            $table->string('id_member_creator')->index();
+            $table->string('webhook_id')->index();
+            $table->string('desc')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateTrelloCredentialsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trello_credentials');
+        Schema::dropIfExists('webhooks');
     }
 }

@@ -10,6 +10,7 @@ use App\Models\IntegratedLists;
 use App\Models\Lists;
 use App\Models\TrelloCredential;
 use App\Models\User;
+use App\Models\Webhook;
 use Unirest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +35,6 @@ class TestController extends Controller
             'token' => $token
         );
 
-        $callbackUrl = 'https://tasks-system-am.herokuapp.com';
 
 
         $response = Unirest\Request::get(
@@ -45,8 +45,6 @@ class TestController extends Controller
 
         $idMemberCreator = $response->body[0]->idMemberCreator;
 
-        $responseWeb =  Unirest\Request::post('https://api.trello.com/1/tokens/' . $token . '/webhooks/?key=' . $key . '&idModel='. $idMemberCreator .'&callbackURL=' . $callbackUrl);
-
         if($response->code === 200){
 
 
@@ -56,9 +54,35 @@ class TestController extends Controller
                     'key'               => $key,
                     'token'             => $token,
                     'id_member_creator' => $idMemberCreator,
-                    'webhook_activity' => 1
                 ]
             );
+
+
+
+              $callbackUrl = 'https://tasks-system-am.herokuapp.com/';
+              $query = array(
+                'key' => $key,
+                'token' => $token,
+                'callbackURL' =>  $callbackUrl,
+                'idModel' => $idMemberCreator
+              );
+
+              $responseWebhook = Unirest\Request::post(
+                'https://api.trello.com/1/webhooks/',
+                $headers,
+                $query
+              );
+
+              if($responseWebhook->code === 200){
+                  Webhook::updateOrCreate([
+                    'user_id'    => Auth::user()->id,
+                    'webhook_id' => $responseWebhook->body->id,
+                    'desc'       => $responseWebhook->body->description
+                  ]);
+              }
+
+
+
         }
         else
         {

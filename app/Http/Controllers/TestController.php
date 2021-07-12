@@ -413,6 +413,6 @@ class TestController extends Controller
     }
     public function webhook(\Illuminate\Http\Request $request){
       var_export($request->all());
-        dd($request);
+        dd($request->getContent());
     }
 }

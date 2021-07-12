@@ -55,16 +55,10 @@ class TestController extends Controller
                     'user_id'           => Auth::user()->id,
                     'key'               => $key,
                     'token'             => $token,
-                    'id_member_creator' => $idMemberCreator
+                    'id_member_creator' => $idMemberCreator,
+                    'webhook_activity' => 1
                 ]
             );
-
-            if($responseWeb->code === 200 || $responseWeb->code === 400) {
-                    TrelloCredential::updateOrCreate([
-                        'webhook_activity' => 1
-                    ]);
-            }
-
         }
         else
         {

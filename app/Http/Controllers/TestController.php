@@ -26,12 +26,16 @@ class TestController extends Controller
         );
 
         $key = $request->get('key');
+
         $token = $request->get('token');
 
         $query = array(
             'key' => $key,
             'token' => $token
         );
+
+        $callbackUrl = 'https://tasks-system-am.herokuapp.com';
+
 
         $response = Unirest\Request::get(
             'https://api.trello.com/1/members/me/boards?key='. $key .'&token=' .$token,
@@ -52,6 +56,14 @@ class TestController extends Controller
                     'id_member_creator' => $idMemberCreator
                 ]
             );
+        $responseWeb =  Unirest\Request::post('https://api.trello.com/1/tokens/' . $token . '/webhooks/?key=' . $key . '&idModel='. $idMemberCreator .'&callbackURL=' . $callbackUrl);
+
+            if($responseWeb->code === 200 || $responseWeb->code === 400) {
+                dd('webhook is connected');
+            }else{
+                dd('webhook not connect');
+            }
+
         }
         else
         {

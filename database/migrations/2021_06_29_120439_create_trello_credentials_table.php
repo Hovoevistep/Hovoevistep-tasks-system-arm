@@ -19,6 +19,7 @@ class CreateTrelloCredentialsTable extends Migration
             $table->string('key')->index();
             $table->string('token')->index();
             $table->string('id_member_creator')->index();
+            $table->boolean('webhook_activity')->default(0);
             $table->timestamps();
         });
     }

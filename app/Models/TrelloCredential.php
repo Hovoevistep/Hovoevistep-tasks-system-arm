@@ -14,7 +14,8 @@ class TrelloCredential extends Model
         'user_id',
         'key',
         'token',
-        'id_member_creator'
+        'id_member_creator',
+        'webhook_activity'
     ];
 
 

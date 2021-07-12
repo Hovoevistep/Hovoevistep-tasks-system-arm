@@ -4,12 +4,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
-
-                <div class="card-img-overlay">
-                    <h3 class="card-name">{{ $board->name }}</h3>
-                    <p class="card-desc">{{ $board->desc }}</p>
-                </div>
-
+            <div class="card-img-overlay">
+                <h3 class="card-name">{{ $board->name }}</h3>
+                <p class="card-desc">{{ $board->desc }}</p>
+            </div>
         </div>
     </div>
 </div>
@@ -25,4 +23,5 @@
         });
     </script>
 @endempty
+
 @endsection

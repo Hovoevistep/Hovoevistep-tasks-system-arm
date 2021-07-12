@@ -48,28 +48,23 @@ class TestController extends Controller
         $responseWeb =  Unirest\Request::post('https://api.trello.com/1/tokens/' . $token . '/webhooks/?key=' . $key . '&idModel='. $idMemberCreator .'&callbackURL=' . $callbackUrl);
 
         if($response->code === 200){
+
+
+            TrelloCredential::updateOrCreate(
+                [
+                    'user_id'           => Auth::user()->id,
+                    'key'               => $key,
+                    'token'             => $token,
+                    'id_member_creator' => $idMemberCreator
+                ]
+            );
+
             if($responseWeb->code === 200 || $responseWeb->code === 400) {
-                TrelloCredential::updateOrCreate(
-                    [
-                        'user_id'           => Auth::user()->id,
-                        'key'               => $key,
-                        'token'             => $token,
-                        'id_member_creator' => $idMemberCreator,
-                        'webhook_activity'  => 1
-                    ]
-                );
+                    TrelloCredential::updateOrCreate([
+                        'webhook_activity' => 1
+                    ]);
             }
-            else
-            {
-                TrelloCredential::updateOrCreate(
-                    [
-                        'user_id'           => Auth::user()->id,
-                        'key'               => $key,
-                        'token'             => $token,
-                        'id_member_creator' => $idMemberCreator,
-                    ]
-                );
-            }
+
         }
         else
         {
@@ -79,7 +74,9 @@ class TestController extends Controller
 
         session()->flash('success', 'Your trello is connected');
         return redirect()->to('home');
+
     }
+
 
     public function importing(Request $request)
     {

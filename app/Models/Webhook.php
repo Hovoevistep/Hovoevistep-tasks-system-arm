@@ -11,7 +11,7 @@ class Webhook extends Model
 
     protected $fillable = [
         'user_id',
-        'webhook_id ',
+        'webhook_id',
         'desc'
     ];
 

@@ -37,10 +37,12 @@ Route::middleware('auth')->group(function() {
 
 });
 
+Route::post('webhook', [TestController::class, 'webhook']);
+
 // Route::post('/webhook', function (\Illuminate\Http\Request $request) {
 
 //        dd($request->input('model'));
-//     //    \Illuminate\Support\Facades\Log::debug(var_export($request->all()['model']['username'], true));
+//        \Illuminate\Support\Facades\Log::debug(var_export($request->all()['model']['username'], true));
 //        return response()->json(['success' => true]);
 // });
 

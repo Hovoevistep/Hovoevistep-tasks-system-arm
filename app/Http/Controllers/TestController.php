@@ -412,7 +412,9 @@ class TestController extends Controller
         return view('error');
     }
     public function webhook(\Illuminate\Http\Request $request){
-      var_export($request->all());
-        dd($request->getContent());
+
+        $response = $this->call('POST', 'xml');
+
+        $this->assertEquals(200, $response->getStatusCode());
     }
 }

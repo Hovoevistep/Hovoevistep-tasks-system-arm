@@ -43,27 +43,33 @@ class TestController extends Controller
             $query
         );
 
+        $idMemberCreator = $response->body[0]->idMemberCreator;
 
-        if($response->code === 200){
-
-            $idMemberCreator = $response->body[0]->idMemberCreator;
-
-            TrelloCredential::updateOrCreate(
-                [
-                    'user_id'           => Auth::user()->id,
-                    'key'               => $key,
-                    'token'             => $token,
-                    'id_member_creator' => $idMemberCreator
-                ]
-            );
         $responseWeb =  Unirest\Request::post('https://api.trello.com/1/tokens/' . $token . '/webhooks/?key=' . $key . '&idModel='. $idMemberCreator .'&callbackURL=' . $callbackUrl);
 
+        if($response->code === 200){
             if($responseWeb->code === 200 || $responseWeb->code === 400) {
-                dd('webhook is connected');
-            }else{
-                dd('webhook not connect');
+                TrelloCredential::updateOrCreate(
+                    [
+                        'user_id'           => Auth::user()->id,
+                        'key'               => $key,
+                        'token'             => $token,
+                        'id_member_creator' => $idMemberCreator,
+                        'webhook_activity'  => 1
+                    ]
+                );
             }
-
+            else
+            {
+                TrelloCredential::updateOrCreate(
+                    [
+                        'user_id'           => Auth::user()->id,
+                        'key'               => $key,
+                        'token'             => $token,
+                        'id_member_creator' => $idMemberCreator,
+                    ]
+                );
+            }
         }
         else
         {
@@ -73,9 +79,7 @@ class TestController extends Controller
 
         session()->flash('success', 'Your trello is connected');
         return redirect()->to('home');
-
     }
-
 
     public function importing(Request $request)
     {

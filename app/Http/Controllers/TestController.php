@@ -416,9 +416,9 @@ class TestController extends Controller
         return view('error');
     }
 
-    public function webhook(\Illuminate\Http\Request $request)
-    {
-        $data = file_get_contents("php://input");
-        dd($request->instance()->getContent());
-    }
+    // public function webhook(\Illuminate\Http\Request $request)
+    // {
+    //     $data = file_get_contents("php://input");
+    //     dd($request->instance()->getContent());
+    // }
 }

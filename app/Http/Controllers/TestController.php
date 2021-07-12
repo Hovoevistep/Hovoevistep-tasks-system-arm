@@ -412,6 +412,6 @@ class TestController extends Controller
         return view('error');
     }
     public function webhook(\Illuminate\Http\Request $request){
-        dd($request->all());
+        dd($request);
     }
 }

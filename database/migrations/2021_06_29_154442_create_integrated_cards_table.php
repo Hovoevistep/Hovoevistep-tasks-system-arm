@@ -17,7 +17,7 @@ class CreateIntegratedCardsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('list_id')->index();
             $table->unsignedBigInteger('card_id')->unique()->index();
-            $table->unsignedBigInteger('pos')->index();
+            $table->float('pos', 255)->index();
             $table->string('trello_card_id')->index();
             $table->timestamps();
         });

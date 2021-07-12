@@ -200,8 +200,6 @@ class TestController extends Controller
 
                    $integratedList = IntegratedLists::where('trello_list_id', $list->id);
 
-
-                   dd($list);
                    if($integratedList->count())
                    {
 

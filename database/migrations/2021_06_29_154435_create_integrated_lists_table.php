@@ -17,7 +17,7 @@ class CreateIntegratedListsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('board_id')->index();
             $table->unsignedBigInteger('list_id')->index();
-            $table->unsignedBigInteger('pos')->index();
+            $table->float('pos', 255)->index();
             $table->string('trello_list_id')->index();
             $table->timestamps();
         });

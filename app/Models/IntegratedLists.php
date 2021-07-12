@@ -11,7 +11,8 @@ class IntegratedLists extends Model
     protected $fillable = [
         'board_id',
         'list_id',
-        'trello_list_id'
+        'trello_list_id',
+        'pos'
     ];
 
     public function board()

@@ -4,10 +4,10 @@
 <div id="listsContainer" class="container">
         <div id="myRow" class="row  d-flex justify-content-start">
             @foreach ($lists as $list)
-                <div id="list_div" class="col-md-3 col-sm" >
+            <div id="list_div" class="col-md-3 col-sm" >
                     <div id="list_card" class="card-body w-100 h-75">
                         <h5 class="card-name">{{ $list->name }}</h5>
-                        @foreach ($list->integratedCardsFromLists as $key => $item)
+                        @foreach ($list->integratedCardsFromLists->sortBy('pos') as $key => $item)
                                 @if ($key === 3)  @break   @endif
                                 <a type="button" id="btn_href" class="btn d-flex justify-content-start" href="{{ url('view/' . $board->id . '/' . $list->id . '/' . $item->integratedCardsFromCards->id) }}">
                                     <p id="list_desc" class="card-text">{{ $item->integratedCardsFromCards->name }}</p>

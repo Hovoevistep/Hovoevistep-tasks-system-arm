@@ -208,7 +208,8 @@ class TestController extends Controller
                       $integratedList->update(
                            [
                                'board_id'  => $board_id,
-                               'list_id'   => $intListId->id
+                               'list_id'   => $intListId->id,
+                               'pos'       => $list->pos
                            ]);
                    }
                    else
@@ -217,7 +218,8 @@ class TestController extends Controller
                             [
                                 'board_id'        => $board_id,
                                 'list_id'         => $createLists->id,
-                                'trello_list_id'  => $list->id
+                                'trello_list_id'  => $list->id,
+                                'pos'             => $list->pos
                             ]
                         );
                     }
@@ -280,7 +282,8 @@ class TestController extends Controller
                         $integratedCard->update(
                             [
                                 'list_id'  => $list_id,
-                                'card_id'  => $intCardId
+                                'card_id'  => $intCardId,
+                                'pos'      => $card->pos
                             ]);
                     }
                     else
@@ -289,7 +292,8 @@ class TestController extends Controller
                             [
                                 'list_id'        => $list_id,
                                 'card_id'        => $createCards->id,
-                                'trello_card_id' => $card->id
+                                'trello_card_id' => $card->id,
+                                'pos'            => $card->pos
                             ]
                         );
                     }
@@ -334,7 +338,9 @@ class TestController extends Controller
 
         $lists = IntegratedLists::where('integrated_lists.board_id', $id)
                  ->leftJoin('lists', 'lists.id', '=' , 'integrated_lists.list_id')
+                 ->orderBy('pos','asc')
                  ->get();
+
 
 
         if($board === null){
@@ -358,13 +364,11 @@ class TestController extends Controller
         ->first();
 
 
-
         if($board === null || empty($list->integratedCardsFromLists)){
             return redirect()->to('/errorPage');
         }
 
-        $cards = $list->integratedCardsFromLists;
-
+        $cards = $list->integratedCardsFromLists->sortBy('pos');
 
         return view('cards', compact('board', 'cards'));
     }
@@ -412,9 +416,7 @@ class TestController extends Controller
         return view('error');
     }
     public function webhook(\Illuminate\Http\Request $request){
-
-        $response = $this->call('POST', 'xml');
-
-        $this->assertEquals(200, $response->getStatusCode());
+      var_export($request->all());
+        dd($request->getContent());
     }
 }

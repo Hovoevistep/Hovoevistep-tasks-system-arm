@@ -11,7 +11,8 @@ class IntegratedCards extends Model
     protected $fillable = [
         'list_id',
         'card_id',
-        'trello_card_id'
+        'trello_card_id',
+        'pos'
     ];
 
     public function list()

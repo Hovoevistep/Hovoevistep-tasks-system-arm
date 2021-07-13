@@ -43,9 +43,9 @@ Route::middleware('auth')->group(function() {
 Route::post('/webhook', function (\Illuminate\Http\Request $request) {
     // csrf_token();
     $response = Http::get('https://tasks-system-am.herokuapp.com/webhook');
-    dd($response->json());
+    dump($response->json());
     $responsePost = Http::post('https://tasks-system-am.herokuapp.com/webhook');
-    dump($responsePost->json());
+    dd($responsePost->json());
 
 
     dd( \Illuminate\Support\Facades\Log::debug(var_export($request->all(), true)));

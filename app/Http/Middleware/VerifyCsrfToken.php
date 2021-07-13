@@ -12,6 +12,6 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        //
+        'https://tasks-system-am.herokuapp.com/webhook'
     ];
 }

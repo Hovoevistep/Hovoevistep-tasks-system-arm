@@ -22,12 +22,14 @@
 
 @empty(!$board)
     <script>
-        $( document ).ready(function() {
+         $( document ).ready(function() {
             $("body").css("background-image", "url('{{ $board->backgroundImage }}')");
-            $("body").css("background-size", "cover");
-            $("body").css("background-repeat", "no-repeat");
-            $("body").css("background-attachment", "fixed");
-            $("body").css("background-position", "center top");
+            $('body').css({
+                backgroundSize : "cover",
+                backgroundRepeat: "no-repeat",
+                backgroundAttachment: "fixed",
+                backgroundPosition: "center ",
+            })
         });
     </script>
 

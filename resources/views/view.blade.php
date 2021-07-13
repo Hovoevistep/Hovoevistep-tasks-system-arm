@@ -6,7 +6,7 @@
         <div class="col-md-10">
             <div class="card-img-overlay">
                 <h3 class="card-name">{{ $board->name }}</h3>
-                <p class="card-desc">{{ $board->desc }}</p>
+                <p class="card-desc" style="color: #fff; text-shadow: 2px 3px 8px #000;">{{ $board->desc }}</p>
             </div>
         </div>
     </div>
@@ -16,10 +16,12 @@
     <script>
         $( document ).ready(function() {
             $("body").css("background-image", "url('{{ $board->backgroundImage }}')");
-            $("body").css("background-size", "cover");
-            $("body").css("background-repeat", "no-repeat");
-            $("body").css("background-attachment", "fixed");
-            $("body").css("background-position", "center top");
+            $('body').css({
+                backgroundSize : "cover",
+                backgroundRepeat: "no-repeat",
+                backgroundAttachment: "fixed",
+                backgroundPosition: "center ",
+            })
         });
     </script>
 @endempty

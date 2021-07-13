@@ -40,10 +40,11 @@ Route::middleware('auth')->group(function() {
 // Route::post('webhook', [TestController::class, 'webhook']);
 
 Route::post('/webhook', function (\Illuminate\Http\Request $request) {
-       dump($request);
-       dump($request->all());
-       dd(\Illuminate\Support\Facades\Log::debug(var_export($request->all(), true)));
-       return response()->json(['success' => true]);
+    csrf_token();
+    dump($request);
+    dump($request->all());
+    dd( \Illuminate\Support\Facades\Log::debug(var_export($request->all(), true)));
+    return response()->json(['success' => true]);
 });
 
 Route::any('{error}', [TestController::class, 'errorPage']);

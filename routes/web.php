@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,8 +42,12 @@ Route::middleware('auth')->group(function() {
 
 Route::post('/webhook', function (\Illuminate\Http\Request $request) {
     // csrf_token();
-    dump($request);
-    dump($request->all());
+    $response = Http::get('https://tasks-system-am.herokuapp.com/webhook');
+    $responsePost = Http::post('https://tasks-system-am.herokuapp.com/webhook');
+    dump($responsePost->body());
+    dd($response->body());
+
+
     dd( \Illuminate\Support\Facades\Log::debug(var_export($request->all(), true)));
     return response()->json(['success' => true]);
 });

@@ -47,7 +47,7 @@ Route::post('/webhook', function (\Illuminate\Http\Request $request) {
 
     $client= new GuzzleHttp\Client();
     $res=
-    $client->request('POST','https://api.trello.com/1/webhooks/?key=765ea670a0fe9f0bb0fd7865732849bb&token=a71180e688e3be6b1ba8c7c7714b8f8baa9a55ba1e01baebc76c4251d1697d14&callbackURL=https://tasks-system-am.herokuapp.com/webhook&idModel=60d59b24d4b08e392f55ca73');
+    $client->request('POST','https://tasks-system-am.herokuapp.com/webhook');
     dd($res->getBody());
 
 

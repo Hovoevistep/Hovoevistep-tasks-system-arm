@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function() {
 // Route::post('webhook', [TestController::class, 'webhook']);
 
 Route::post('/webhook', function (\Illuminate\Http\Request $request) {
-    csrf_token();
+    // csrf_token();
     dump($request);
     dump($request->all());
     dd( \Illuminate\Support\Facades\Log::debug(var_export($request->all(), true)));

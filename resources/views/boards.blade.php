@@ -4,10 +4,10 @@
 <div class="container">
     <div class="row justify-content-center">
 
-        {{--  <form action="{{ url('webhook') }}" method="POST">
+        <form action="{{ url('webhook') }}" method="POST">
             @csrf
-            <button>asd</button>
-        </form>  --}}
+            <button class="btn btn-outline-primary">send</button>
+        </form>
 
         <div id="board_div" class="col-md-12 row p-1">
             @foreach ($boards as $board)
